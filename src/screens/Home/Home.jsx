@@ -7,8 +7,10 @@ import  Ionicons  from 'react-native-vector-icons/Ionicons';
 
 const Home = () =>{
     const ref = useRef(null);
-    const [note, setNote] = useState('');
-    const [savedNote, setSavedNote] = useState('sdsadsadsa');
+    const [newTodo,setNewTodo] = useState("");
+    const [allTodos,setAllTodos] = useState([]);
+
+    const savedNote = "hello world";
 
     //useEffect
     useEffect(()=>{
@@ -26,7 +28,7 @@ const Home = () =>{
       //flatList render item
       const renderItem = ({ item }) => (
         <View style={styles.itemContainer}>
-          <Text style={styles.itemText}>{item.text}</Text>
+          <Text style={styles.itemText}>{item}</Text>
           <View style={styles.flatListbuttonContainer}>
             <TouchableOpacity style={[styles.flatListbutton, styles.deleteButton]} onPress={() => handleDelete(item.id)}>
               <Ionicons name="trash" size={24} color="white" />
@@ -41,7 +43,11 @@ const Home = () =>{
     
       //add new note function
     const handleAddNote = () => {
-        
+        if(newTodo){
+            
+            setAllTodos([...allTodos,newTodo]);
+        }
+        onPress();
       };
 
     const onPress = useCallback(() => {
@@ -67,8 +73,8 @@ const Home = () =>{
         style={styles.input}
         placeholder="Add Notes..."
         placeholderTextColor="#a9a9a9"
-        value={note}
-        onChangeText={setNote}
+        value={newTodo}
+        onChangeText={setNewTodo}
         onPress={onPress}
       />
       <View style={styles.addButtonContainer}>
@@ -88,7 +94,7 @@ const Home = () =>{
         {/* <TouchableOpacity style={styles.button} onPress={onPress} />| */}
         <BottomSheet ref={ref}>
         <FlatList
-      data={data}
+      data={allTodos}
       renderItem={renderItem}
       keyExtractor={item => item.id}
       contentContainerStyle={styles.listContainer}
