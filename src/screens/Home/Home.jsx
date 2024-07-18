@@ -3,12 +3,19 @@ import { View, Text, StyleSheet,Button,TouchableOpacity,SafeAreaView,TextInput, 
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import BottomSheet, { BottomSheetRefProps } from '../../components/BottomSheet';
 import  Ionicons  from 'react-native-vector-icons/Ionicons';
+import { dispatch } from '../../store/reduxStore';
+import { addTodo,editTodo,removeTodo } from '../../store/todoSlice';
+import { Provider, useSelector } from "react-redux";
 
 
 const Home = () =>{
     const ref = useRef(null);
     const [newTodo,setNewTodo] = useState("");
     const [allTodos,setAllTodos] = useState([]);
+    const [submitLabel,setSubmitLabel] = useState("Add");
+    const [itemToBeEdited,setItemToBeEdited] = useState("");
+
+    const reduxTodos = useSelector((state) => state.todos.allTodos);
 
     const savedNote = "hello world";
 
@@ -17,13 +24,7 @@ const Home = () =>{
         onPress();
     },[]);
 
-    //tempory todos
-    const data = [
-        { id: '1', text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis' },
-        // { id: '2', text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis' },
-        // { id: '3', text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis' },
-        // { id: '4', text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis' },
-      ];
+    
 
       //flatList render item
       const renderItem = ({ item }) => (
@@ -33,7 +34,7 @@ const Home = () =>{
             <TouchableOpacity style={[styles.flatListbutton, styles.deleteButton]} onPress={() => handleDelete(item.id)}>
               <Ionicons name="trash" size={24} color="white" />
             </TouchableOpacity>
-            <TouchableOpacity style={[styles.flatListbutton, styles.editButton]} onPress={() => handleEdit(item.id)}>
+            <TouchableOpacity style={[styles.flatListbutton, styles.editButton]} onPress={() => handleEdit(item)}>
               <Ionicons name="pencil" size={24} color="white" />
             </TouchableOpacity>
           </View>
@@ -41,14 +42,46 @@ const Home = () =>{
       );
 
     
-      //add new note function
+      //add new todo function
     const handleAddNote = () => {
-        if(newTodo){
+        
+
+        if(submitLabel == "Add"){
+            if(newTodo){
             
-            setAllTodos([...allTodos,newTodo]);
+                // setAllTodos([...allTodos,newTodo]);
+                dispatch(
+                    addTodo({
+                        todoTobeAdded : newTodo
+                    })
+                );
+            }
+        }else{
+            const itemRemovedArray = reduxTodos.filter(todo => todo !== itemToBeEdited);
+            const newArry = [...itemRemovedArray,newTodo];
+            dispatch(
+                editTodo({
+                    newTodoArray : newArry
+                })
+            );
         }
+        setNewTodo("")
         onPress();
+        setSubmitLabel("Add");
+        setItemToBeEdited("");
       };
+
+      //edit existing todo function
+      const handleEdit = (todoTobeEddited) =>{
+        
+            if(reduxTodos.includes(todoTobeEddited)){
+                setNewTodo(todoTobeEddited);
+                setSubmitLabel("Save");
+                setItemToBeEdited(todoTobeEddited);
+                
+            }
+            
+      }
 
     const onPress = useCallback(() => {
         const isActive = ref?.current?.isActive();
@@ -76,10 +109,11 @@ const Home = () =>{
         value={newTodo}
         onChangeText={setNewTodo}
         onPress={onPress}
+        multiline={true}
       />
       <View style={styles.addButtonContainer}>
       <TouchableOpacity style={styles.addButton} onPress={handleAddNote}>
-        <Text style={styles.addButtonText}>Add</Text>
+        <Text style={styles.addButtonText}>{submitLabel}</Text>
       </TouchableOpacity>
       </View>
       {savedNote ? (
@@ -94,9 +128,9 @@ const Home = () =>{
         {/* <TouchableOpacity style={styles.button} onPress={onPress} />| */}
         <BottomSheet ref={ref}>
         <FlatList
-      data={allTodos}
+      data={reduxTodos}
       renderItem={renderItem}
-      keyExtractor={item => item.id}
+      keyExtractor={item => item}
       contentContainerStyle={styles.listContainer}
       ItemSeparatorComponent={() => <View style={styles.separator} />}
     />
