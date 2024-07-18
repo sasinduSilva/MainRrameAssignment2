@@ -7,18 +7,15 @@ import AuthStack from './navigations/AuthStack';
 import { Provider, useSelector } from "react-redux";
 import reduxStore from './store/reduxStore';
 
-const App = () =>{
-
-  const AppContent = () =>{
-
-
-    return(
-      <NavigationContainer onReady={() => BootSplash.hide({fade:true})}>
-      <MainStack/>
-    </NavigationContainer>
+const App = () => {
+  
+  const AppContent = () => {
+    const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
+    return (
+      <NavigationContainer onReady={() => BootSplash.hide({ fade: true })}>
+        {isLoggedIn ? <MainStack />:<AuthStack/>}
+      </NavigationContainer>
     )
-
-
   }
 
   return (

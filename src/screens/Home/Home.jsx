@@ -244,6 +244,7 @@ const styles = StyleSheet.create({
         flex: 1,
         fontSize: 16,
         marginRight: 16,
+        borderBottomColor:'black'
       },
       
       flatListbuttonContainer: {

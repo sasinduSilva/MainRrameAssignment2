@@ -1,8 +1,22 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
+import { Provider, useSelector } from "react-redux";
+import { dispatch } from '../../store/reduxStore';
+import { login } from '../../store/authSlice';
 
 const Login = () => {
   const [password, setPassword] = useState('');
+  const hardCodedPw = "login123";
+
+  const handleLogin = () =>{
+
+    if(password != "" && password == hardCodedPw){
+          dispatch(
+            login()
+          );     
+    }
+
+  }
 
   return (
     <View style={styles.container}>
@@ -16,7 +30,7 @@ const Login = () => {
           onChangeText={setPassword}
         />
       </View>
-      <TouchableOpacity style={styles.button}>
+      <TouchableOpacity onPress={handleLogin} style={styles.button}>
         <Text style={styles.buttonText}>Unlock</Text>
       </TouchableOpacity>
     </View>
