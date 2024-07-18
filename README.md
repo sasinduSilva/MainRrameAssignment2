@@ -1,79 +1,79 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+Modern To-Do Application
+Overview
+This is a modern React Native to-do application designed for an assignment. It provides users with the ability to manage their tasks efficiently through a simple and intuitive interface. The application supports login functionality, and users can perform CRUD (Create, Read, Update, Delete) operations on their to-dos. The app utilizes Redux for state management to ensure a smooth and consistent user experience.
 
-# Getting Started
+Features
+User Authentication: Users can log in using a predefined password (login123).
+CRUD Operations: Users can add, update, and delete to-dos.
+State Management: All to-dos are stored and managed using Redux, ensuring data persistence and consistency.
+Cross-Platform Support: The application can be run on Android devices.
+Installation
+To get started with the application, follow these steps:
 
->**Note**: Make sure you have completed the [React Native - Environment Setup](https://reactnative.dev/docs/environment-setup) instructions till "Creating a new application" step, before proceeding.
+Clone the Repository:
 
-## Step 1: Start the Metro Server
+bash
+Copy code
+git clone https://github.com/sasinduSilva/MainRrameAssignment2.git
+Navigate to the Project Directory:
 
-First, you will need to start **Metro**, the JavaScript _bundler_ that ships _with_ React Native.
+bash
+Copy code
+cd MainRrameAssignment2
+Install Dependencies:
 
-To start Metro, run the following command from the _root_ of your React Native project:
+Ensure you have Node.js installed. Then, install the required dependencies using npm or yarn:
 
-```bash
-# using npm
-npm start
+bash
+Copy code
+npm install
+# or
+yarn install
+Run the Metro Bundler:
 
-# OR using Yarn
-yarn start
-```
+Start the Metro Bundler, which will compile and serve your JavaScript code:
 
-## Step 2: Start your Application
+bash
+Copy code
+npx react-native start
+Run the Application on an Android Device:
 
-Let Metro Bundler run in its _own_ terminal. Open a _new_ terminal from the _root_ of your React Native project. Run the following command to start your _Android_ or _iOS_ app:
+Open a new terminal window and run the following command to launch the application on an Android device or emulator:
 
-### For Android
+bash
+Copy code
+npx react-native run-android
+Make sure you have an Android emulator running or an Android device connected to your computer.
 
-```bash
-# using npm
-npm run android
+Usage
+Login:
 
-# OR using Yarn
-yarn android
-```
+On the login screen, enter login123 as the password to gain access to the application.
+Manage To-Dos:
 
-### For iOS
+Add To-Do: Click on the "Add" button to create a new to-do item. Enter the task details and save it.
+Update To-Do: Select an existing to-do item to edit its details. Save changes to update the to-do.
+Delete To-Do: Swipe or click on a to-do item to delete it.
+Folder Structure
+src: folder where all source code included.
+src/assets : all assets files are included here.
+src/components : all reusable ui components are stored here.
+src/navigations : all navigators are stored here.
+src/screens : all UI screens are stored here.
+src/store : all redux stores and reducers are defined here.
 
-```bash
-# using npm
-npm run ios
+Technologies Used
+React Native: Framework for building native mobile apps using JavaScript and React.
+Redux: State management library for managing application state.
+React Navigation: Library for routing and navigation in React Native apps.
+React Native Gesture Handler: Library for handling gestures in React Native.
+Contributing
+Contributions are welcome! Please fork the repository, make your changes, and submit a pull request. Ensure that your code follows the project's coding standards and includes tests where applicable.
 
-# OR using Yarn
-yarn ios
-```
 
-If everything is set up _correctly_, you should see your new app running in your _Android Emulator_ or _iOS Simulator_ shortly provided you have set up your emulator/simulator correctly.
 
-This is one way to run your app — you can also run it directly from within Android Studio and Xcode respectively.
+Contact
+For any questions or inquiries, please reach out to:
 
-## Step 3: Modifying your App
-
-Now that you have successfully run the app, let's modify it.
-
-1. Open `App.tsx` in your text editor of choice and edit some lines.
-2. For **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Developer Menu** (<kbd>Ctrl</kbd> + <kbd>M</kbd> (on Window and Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (on macOS)) to see your changes!
-
-   For **iOS**: Hit <kbd>Cmd ⌘</kbd> + <kbd>R</kbd> in your iOS Simulator to reload the app and see your changes!
-
-## Congratulations! :tada:
-
-You've successfully run and modified your React Native App. :partying_face:
-
-### Now what?
-
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [Introduction to React Native](https://reactnative.dev/docs/getting-started).
-
-# Troubleshooting
-
-If you can't get this to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
-
-# Learn More
-
-To learn more about React Native, take a look at the following resources:
-
-- [React Native Website](https://reactnative.dev) - learn more about React Native.
-- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
-- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
-- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
-- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
+Your Name: sinharaavishka@gmail.com
+GitHub: sasinduSilva
