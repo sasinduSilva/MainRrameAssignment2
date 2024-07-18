@@ -31,7 +31,7 @@ const Home = () =>{
         <View style={styles.itemContainer}>
           <Text style={styles.itemText}>{item}</Text>
           <View style={styles.flatListbuttonContainer}>
-            <TouchableOpacity style={[styles.flatListbutton, styles.deleteButton]} onPress={() => handleDelete(item.id)}>
+            <TouchableOpacity style={[styles.flatListbutton, styles.deleteButton]} onPress={() => handleDelete(item)}>
               <Ionicons name="trash" size={24} color="white" />
             </TouchableOpacity>
             <TouchableOpacity style={[styles.flatListbutton, styles.editButton]} onPress={() => handleEdit(item)}>
@@ -81,6 +81,17 @@ const Home = () =>{
                 
             }
             
+      }
+
+      //delete existing todo function
+      const handleDelete = (todoToBeDeleted) =>{
+            if(reduxTodos.includes(todoToBeDeleted)){
+                dispatch(
+                    removeTodo({
+                        newTodoArray : reduxTodos.filter(todo => todo !== todoToBeDeleted)
+                    })
+                );
+            }
       }
 
     const onPress = useCallback(() => {

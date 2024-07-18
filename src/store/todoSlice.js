@@ -14,10 +14,12 @@ const todoSlice = createSlice({
             
         },
         removeTodo:(state,action) =>{
+            
             state.allTodos = action.payload.newTodoArray
             
         },
         editTodo:(state,action)=>{
+
             state.allTodos = action.payload.newTodoArray
         }
     }
