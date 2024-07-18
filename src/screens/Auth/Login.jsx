@@ -1,26 +1,30 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
-import { Provider, useSelector } from "react-redux";
 import { dispatch } from '../../store/reduxStore';
 import { login } from '../../store/authSlice';
 
 const Login = () => {
+  // State to manage the password input
   const [password, setPassword] = useState('');
+  
+  // Hardcoded password for login validation
   const hardCodedPw = "login123";
 
-  const handleLogin = () =>{
-
-    if(password != "" && password == hardCodedPw){
-          dispatch(
-            login()
-          );     
+  // Function to handle the login action
+  const handleLogin = () => {
+    // Check if the password is not empty and matches the hardcoded password
+    if (password !== "" && password === hardCodedPw) {
+      // Dispatch login action if the password is correct
+      dispatch(login());
     }
-
   }
 
   return (
     <View style={styles.container}>
+      {/* Title for the login screen */}
       <Text style={styles.title}>Todo</Text>
+      
+      {/* Input container for the password input */}
       <View style={styles.inputContainer}>
         <Text style={styles.label}>Enter Password</Text>
         <TextInput
@@ -30,6 +34,8 @@ const Login = () => {
           onChangeText={setPassword}
         />
       </View>
+      
+      {/* Button to trigger the login action */}
       <TouchableOpacity onPress={handleLogin} style={styles.button}>
         <Text style={styles.buttonText}>Unlock</Text>
       </TouchableOpacity>
@@ -37,6 +43,7 @@ const Login = () => {
   );
 };
 
+// Styles for the components
 const styles = StyleSheet.create({
   container: {
     flex: 1,

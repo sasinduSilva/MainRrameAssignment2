@@ -1,4 +1,3 @@
-import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 import { NavigationContainer } from '@react-navigation/native';
 import BootSplash from 'react-native-bootsplash';
@@ -9,7 +8,9 @@ import reduxStore from './store/reduxStore';
 
 const App = () => {
   
+  // arrow function which returns the app conent based on whether user logged in or not
   const AppContent = () => {
+    //isLoggedIn variable from state.
     const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
     return (
       <NavigationContainer onReady={() => BootSplash.hide({ fade: true })}>
@@ -19,6 +20,7 @@ const App = () => {
   }
 
   return (
+    //returing the app content wrapped up by redux store
     <Provider store={reduxStore}>
       <AppContent />
     </Provider>
@@ -26,7 +28,7 @@ const App = () => {
 
 };
 
-const styles = StyleSheet.create({});
+
 
 export default App;
 

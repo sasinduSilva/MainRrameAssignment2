@@ -1,23 +1,27 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack';
-import Home from '../screens/Home/Home';
-import Login from '../screens/Auth/Login';
+import Login from '../screens/Auth/Login'; // Import Login screen component
 
-
-
-const AuthStack = () =>{
+// Define a stack navigator for authentication-related screens
+const AuthStack = () => {
+    // Instantiate the Stack Navigator from the react-navigation library
     const Stack = createStackNavigator();
 
-    return(
-        <Stack.Navigator initialRouteName='Login'>
-            <Stack.Screen name="Login" component={Login} options={{headerShown:false}} />
+    return (
+        // Stack Navigator component configuration
+        <Stack.Navigator 
+            initialRouteName='Login' // Set the initial route to 'Login'
+        >
+            {/* Define the 'Login' screen */}
+            <Stack.Screen 
+                name="Login" 
+                component={Login} 
+                options={{
+                    headerShown: false // Hide the header for this screen
+                }} 
+            />
         </Stack.Navigator>
-    )
-
-    
-    
-
-}
+    );
+};
 
 export default AuthStack;
